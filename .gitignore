@@ -1,2 +1,7 @@
+# Dirs
+data
 logs
 venv
+
+# Files
+.env
