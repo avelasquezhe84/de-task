@@ -8,7 +8,7 @@ with geolocation as (
         try_to_double(geolocation_lat) as geolocation_lat,
         try_to_double(geolocation_lng) as geolocation_lng,
         trim(geolocation_city) as geolocation_city,
-        trim(geolocation_state) as geolocation_city
+        trim(geolocation_state) as geolocation_state
     from
         geolocation
 )

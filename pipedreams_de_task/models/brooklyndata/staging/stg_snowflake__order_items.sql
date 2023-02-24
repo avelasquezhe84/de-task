@@ -5,7 +5,7 @@ with order_items as (
 , final as (
     select
         trim(order_id) as order_id,
-        trim(order_item_id) as order_item_id,
+        try_to_number(order_item_id, 3, 0) as order_item_id,
         trim(product_id) as product_id,
         trim(seller_id) as seller_id,
         try_to_date(shipping_limit_date, 'YYYY-MM-DD HH24:MI:SS') as shipping_limit_date,
