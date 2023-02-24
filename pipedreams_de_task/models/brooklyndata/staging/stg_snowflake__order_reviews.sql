@@ -10,7 +10,7 @@ with order_reviews as (
         trim(review_comment_title) as review_comment_title,
         trim(review_comment_message) as review_comment_message,
         try_to_date(review_creation_date, 'YYYY-MM-DD HH24:MI:SS') as review_creation_date,
-        try_to_date(review_answer_timestamp, 'YYYY-MM-DD HH24:MI:SS') as review_answer_timestamp
+        try_to_date(review_answer_timestamp, 'YYYY-MM-DD HH24:MI:SS') as review_answer_date
     from
         order_reviews
 )
