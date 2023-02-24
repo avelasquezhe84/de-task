@@ -1,8 +1,11 @@
+from collections import defaultdict
 from snowflake.connector.pandas_tools import pd_writer
 from snowflake.sqlalchemy import URL
 from sqlalchemy import create_engine
 import os
 import pandas as pd
+
+dtypes = defaultdict(lambda: "str")
 
 engine = create_engine(URL(
     account=os.getenv("SNOWFLAKE_ACCOUNT"),
@@ -19,9 +22,8 @@ for _, _, files in os.walk(data_dir):
     for f in files:
         filename = os.path.join(data_dir, f)
         name = f.split(".")[0]
-        df = pd.read_csv(filename)
+        df = pd.read_csv(filename, dtype=dtypes)
         df.columns = df.columns.str.upper()
-        # print(f"{name} -> {df.columns}")
         try:
             df.to_sql(name, engine, if_exists="replace", index=False, method=pd_writer)
             print(f"{f} loaded...")

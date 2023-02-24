@@ -34,5 +34,5 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   pipedreams_de_task:
     # Config indicated by + and applies to all files under models/example/
-    example:
+    brooklyndata:
       +materialized: view
