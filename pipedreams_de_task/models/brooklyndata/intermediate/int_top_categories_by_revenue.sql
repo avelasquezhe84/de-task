@@ -1,5 +1,5 @@
 with revenue_by_category as (
-    select * from {{ ref('int_revenue_per_product_category') }}
+    select * from {{ ref('int_revenue_by_product_category') }}
 )
 
 , final as (
