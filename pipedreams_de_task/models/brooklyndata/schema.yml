@@ -63,6 +63,9 @@ models:
       - name: customer_id
         tests:
           - not_null
+      - name: order_purchase_date
+        tests:
+          - not_null
   - name: stg_snowflake__products
     columns:
       - name: product_id

@@ -8,7 +8,21 @@ sources:
       - name: olist_geolocation_dataset
       - name: olist_order_customer_dataset
       - name: olist_order_items_dataset
+        columns:
+          - name: price
+            tests:
+              - is_numeric
+              - is_positive
+          - name: freight_value
+            tests:
+              - is_numeric
+              - is_positive
       - name: olist_order_payments_dataset
+        columns:
+          - name: payment_value
+            tests:
+              - is_numeric
+              - is_positive
       - name: olist_order_reviews_dataset
       - name: olist_orders_dataset
       - name: olist_products_dataset
