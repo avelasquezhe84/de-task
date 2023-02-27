@@ -83,3 +83,6 @@ models:
           - relationships:
               to: ref('stg_snowflake__geolocation')
               field: geolocation_zip_code_prefix
+
+  - name: mrt_order_report
+    description: '{{ doc("table_report") }}'
