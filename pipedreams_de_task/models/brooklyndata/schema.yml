@@ -1,0 +1,82 @@
+version: 2
+
+models:
+  - name: stg_snowflake__geolocation
+    columns:
+      - name: geolocation_zip_code_prefix
+        tests:
+          - not_null
+  - name: stg_snowflake__order_customer
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('stg_snowflake__orders')
+              field: customer_id
+  - name: stg_snowflake__order_items
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_snowflake__orders')
+              field: order_id
+      - name: product_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_snowflake__products')
+              field: product_id
+      - name: seller_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_snowflake__sellers')
+              field: seller_id
+  - name: stg_snowflake__order_payments
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_snowflake__orders')
+              field: order_id
+  - name: stg_snowflake__order_reviews
+    columns:
+      - name: review_id
+        tests:
+          - not_null
+      - name: order_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_snowflake__orders')
+              field: order_id
+  - name: stg_snowflake__orders
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - not_null
+  - name: stg_snowflake__products
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+  - name: stg_snowflake__sellers      
+    columns:
+      - name: seller_id
+        tests:
+          - unique
+          - not_null
+      - name: seller_zip_code_prefix
+        tests:
+          - relationships:
+              to: ref('stg_snowflake__geolocation')
+              field: geolocation_zip_code_prefix
